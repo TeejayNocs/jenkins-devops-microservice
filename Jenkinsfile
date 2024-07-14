@@ -39,8 +39,7 @@ pipeline {
 		}
 		stage ('Integration'){
 			steps {
-				echo "Integration Test"
-				sh "mvn failsafe:integration-test failsafe:why"
+				sh "mvn failsafe:integration-test failsafe:verify"
 			}
 		}
 
