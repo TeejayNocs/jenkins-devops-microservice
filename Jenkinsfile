@@ -13,7 +13,7 @@ pipeline {
 	}
 
 	stages {
-		stage ('Build'){
+		stage ('Checkout'){
 			steps {
 				sh 'docker version'
 				// sh 'mvn --version'
@@ -26,6 +26,11 @@ pipeline {
 				echo "BUILD_URL - $env.BUILD_URL"
 			}
 		}
+	stage {'Compile')
+		steps {
+             sh "mvn test"
+		}
+	}
 		stage ('Test'){
 			steps {
 				echo "Test"
@@ -34,6 +39,7 @@ pipeline {
 		stage ('Integration'){
 			steps {
 				echo "Integration Test"
+				sh "mvn failsafe:integration-test failsafe:why"
 			}
 		}
 
