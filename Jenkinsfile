@@ -26,18 +26,17 @@ pipeline {
 				echo "BUILD_URL - $env.BUILD_URL"
 			}
 		}
-	stage ('Compile'){
+	stage('Compile'){
 		steps {
              sh "mvn clean compile"
 		}
 	}
-	
 		stage ('Test'){
 			steps {
 				sh "mvn test"
 			}
 		}
-		stage ('Integration'){
+		stage ('Integration Test'){
 			steps {
 				sh "mvn failsafe:integration-test failsafe:verify"
 			}
